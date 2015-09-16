@@ -1,6 +1,6 @@
-# Autor			Piotr Filipek
-# Email			danoxide@outlook.com
-# Data wydania	17 września 2015
+# Autor          Piotr Filipek
+# Email          danoxide@outlook.com
+# Data wydania   17 września 2015
 
 import json, urllib2, os
 
