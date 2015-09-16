@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # Autor          Piotr Filipek
 # Email          danoxide@outlook.com
 # Data wydania   17 września 2015
@@ -24,8 +25,7 @@ class BingBackground:
 	# Ustawia pobrany obraz jako tło pulpitu
 	def setAsWallpaper(self, fileurl):
 		# os.system("chmod +r %s" % fileurl)
-		os.system(self.command % fileurl)
-		print 'gsettings set org.gnome.desktop.background picture-uri "%s"' % fileurl
+		os.system('gsettings set org.gnome.desktop.background picture-uri "file://%s"' % fileurl)
 
 	# Zapisuje aktualnie używany obraz tła ze strony Bing
 	def save(self, url, filename, directory='wallpapers'):
