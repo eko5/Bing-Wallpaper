@@ -18,9 +18,15 @@ class BingBackground:
 		self.target = '%s/%s/%s' % (os.path.dirname(os.path.abspath(__file__)), self.directory, name)
 		
 		# check if file exists
-		if os.path.isfile(self.target):
+		if not os.path.isfile(self.target):
+			#print "Saving file..."
 			self.save(url)
-			self.setAsWallpaper(self.target)
+		else:
+			#print "File exists..."
+
+		# Set wallpaper
+		#print "Setting wallpaper..."
+		self.setAsWallpaper(self.target)
 
 	# Download informations from the Bing site in JSON
 	def getJSON(self):
@@ -28,7 +34,6 @@ class BingBackground:
 
 	# Set downloaded picture as a wallpaper
 	def setAsWallpaper(self, fileurl):
-		# os.system("chmod +r %s" % fileurl)
 		os.system('gsettings set org.gnome.desktop.background picture-uri "file://%s"' % fileurl)
 
 	# Save current Bing wallpaper
