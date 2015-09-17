@@ -33,7 +33,8 @@ class BingBackground:
         if distro == "ubuntu":
             os.system('gsettings set org.gnome.desktop.background picture-uri "file://%s"' % self.target)
         elif distro == "lubuntu":
-            os.system('pcmanfm -w %s' % self.target);
+            #os.system('pcmanfm -w %s' % self.target);
+            os.system('xfconf-query -c xfce4-desktop -p /backdrop/screen0/monitorLVDS-0/workspace0/last-image -s %s' % self.target)
         else:
             print "Can't to set wallpaper, because your distro is unsupported."
 
