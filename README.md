@@ -1,2 +1,2 @@
-# Bing-Wallpaper
-App gets current Bing wallpaper and sets its as a wallpaper
+# Bing Wallpaper
+Aplikacja pobiera aktualne tło ze strony Bing i ustawia jako tło pulpitu.
