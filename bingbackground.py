@@ -1,3 +1,4 @@
+#!/usr/bin/python
 # Author         Piotr Filipek
 # Email          danoxide@outlook.com
 # Release date   17 september 2015
@@ -51,5 +52,9 @@ class BingBackground:
         return os.environ['DESKTOP_SESSION']
 
 # Run application
-bb = BingBackground()
-bb.set_as_wallpaper()
+def main():
+    bb = BingBackground()
+    bb.set_as_wallpaper()
+
+if __name__ == "__main__":
+    main()
