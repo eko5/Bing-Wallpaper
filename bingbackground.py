@@ -24,16 +24,17 @@ class BingBackground:
         url = self.domain % self.get_json()['images'][0]['url']
         name = url.split('/')[-1]
         self.target = '%s/%s/%s' % (os.path.dirname(os.path.abspath(__file__)), self.directory, name)
-        distro = self.linux_distribution()
+        env = self.get_enviroment()
 
         # check if file exists
         if not os.path.isfile(self.target):
             self.save(url)
 
-        if distro == "ubuntu":
+        if env == "ubuntu" or env == "gnome":
             os.system('gsettings set org.gnome.desktop.background picture-uri "file://%s"' % self.target)
-        elif distro == "lubuntu":
-            #os.system('pcmanfm -w %s' % self.target);
+        elif env == "lubuntu":
+            os.system('pcmanfm -w %s' % self.target);
+        elif env == "xubuntu":
             os.system('xfconf-query -c xfce4-desktop -p /backdrop/screen0/monitorLVDS-0/workspace0/last-image -s %s' % self.target)
         else:
             print "Can't to set wallpaper, because your distro is unsupported."
@@ -46,11 +47,8 @@ class BingBackground:
         output.close()
 
     # Get distro name
-    def linux_distribution(self):
-        try:
-            return platform.linux_distribution()[0].lower()
-        except:
-            return "n/a"
+    def get_enviroment(self):
+        return os.environ['DESKTOP_SESSION']
 
 # Run application
 bb = BingBackground()
