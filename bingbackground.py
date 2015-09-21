@@ -25,6 +25,8 @@ class BingBackground():
         url = self.domain % self.get_json()['images'][0]['url']
         name = url.split('/')[-1]
         self.target = '%s/%s/%s' % (os.path.dirname(os.path.abspath(__file__)), self.directory, name)
+        if not os.path.exists(os.getcwd()+"/"+self.directory):
+            os.makedirs(os.getcwd()+"/"+self.directory)
         env = self.get_desktop_environment()
 
         # check if file exists
