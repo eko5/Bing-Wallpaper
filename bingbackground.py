@@ -3,7 +3,7 @@
 # Email          danoxide@outlook.com
 # Release date   17 september 2015
 
-import json, urllib2, os, platform, sys, subprocess, gio
+import json, urllib2, os, platform, sys, subprocess, gio, time
 
 # Class that download current wallpaper from the Bing
 # site and sets its as a desktop wallpaper.
@@ -14,14 +14,25 @@ class BingBackground():
     directory = 'wallpapers'
 
     def __init__(self):
-        pass
+        if len(sys.argv) > 1:
+            if sys.argv[1] == "--refresh":
+                hours = int(sys.argv[2]) * 3600
+
+                if(hours > 0):
+                    while True:
+                        self.set_wallpaper()
+                        time.sleep(hours)
+                else:
+                    print "Hour number must be positive!"
+        else:
+            self.set_wallpaper()
 
     # Download informations from the Bing site in JSON
     def get_json(self):
         return json.load(urllib2.urlopen(self.data))
 
     # Set downloaded picture as a wallpaper
-    def set_as_wallpaper(self):
+    def set_wallpaper(self):
         url = self.domain % self.get_json()['images'][0]['url']
         name = url.split('/')[-1]
         self.target = '%s/%s/%s' % (os.path.dirname(os.path.abspath(__file__)), self.directory, name)
@@ -34,7 +45,7 @@ class BingBackground():
             self.save(url)
 
         # Set as wallpaper
-        self.set_wallpaper(self.target, True)
+        self.set_as_wallpaper(self.target, True)
 
     # Save current Bing wallpaper
     def save(self, url):
@@ -93,7 +104,7 @@ class BingBackground():
         return False
 
     # Set given file as a wallpaper
-    def set_wallpaper(self, file_loc, first_run):
+    def set_as_wallpaper(self, file_loc, first_run):
         # Note: There are two common Linux desktop environments where 
         # I have not been able to set the desktop background from 
         # command line: KDE, Enlightenment
@@ -222,7 +233,6 @@ class BingBackground():
 # Run application
 def main():
     bb = BingBackground()
-    bb.set_as_wallpaper()
 
 if __name__ == "__main__":
     main()
