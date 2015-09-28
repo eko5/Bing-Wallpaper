@@ -7,7 +7,13 @@ Korzystając z polecenia `git clone` sklonuj repozytorium, a następnie uruchom 
 $ git clone https://github.com/danoxide/Bing-Wallpaper.git
 $ python bingbackground.py
 ```
-Możesz również dodać skrypt `run.sh` do autostartu aby regularnie (co 6h) sprawdzać najnowsze tapety i automatycznie ustawiać je jako tło pulpitu. 
+**Automatyczne odświeżanie**
+
+Dodając parametr `--refresh h` możesz sprawić, aby nowa tapeta była sprawdzana co `h` godzin. Poniższy przykład spowoduje, że tapeta będzie sprawdzana co 6h.
+```
+$ python bingbackground.py --refresh 6
+```
+Możesz również dodać powyższe polecenie do autostartu, co spowoduje, że program będzie uruchamiany wraz ze startem systemu i automatycznie tapeta będzie zmieniana własnie co `h` godzin.
 
 ### Wymagania
  * Python: 2.7.9
